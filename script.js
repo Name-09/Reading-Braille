@@ -224,12 +224,11 @@ answerInput.addEventListener("keydown", (e) => {
     }
 
     // 不正解
-if (input !== currentQuestion.char && input !== "ー") {
-    wrongSound.play();
     if (!wrongList.includes(currentQuestion)) {
         wrongList.push(currentQuestion);
     }
-}
+    wrongSound.play();
+});
 
 
 // =============================
@@ -258,6 +257,7 @@ document.getElementById("homeBtn").addEventListener("click", () => {
     endScreen.classList.add("hidden");
     homeScreen.classList.remove("hidden");
 });
+
 
 
 
