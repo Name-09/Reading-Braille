@@ -64,3 +64,70 @@ button {
     display: none;
     pointer-events: none;
 }
+
+/* 基本はスマホ寄り（画面幅に応じて変化） */
+img {
+    width: 60vw;
+    max-width: 150px;
+    margin: 5vw 0;
+}
+
+#feedback .answer {
+    color: red;
+    font-size: 10vw;
+}
+
+#feedback .next {
+    color: #333;
+    font-size: 4vw;
+}
+
+input#answer {
+    font-size: 6vw;
+    padding: 3vw;
+    width: 60vw;
+    max-width: 300px;
+    margin: 2vw 0;
+}
+
+button {
+    font-size: 4vw;
+    padding: 3vw 5vw;
+    border-radius: 12px;
+    margin: 2vw 1vw;
+}
+
+/* PC用に固定サイズで調整（画面幅が768px以上） */
+@media (min-width: 768px) {
+    img {
+        width: 150px;
+        margin: 20px 0;
+    }
+
+    #feedback .answer {
+        font-size: 50px;
+    }
+
+    #feedback .next {
+        font-size: 20px;
+    }
+
+    input#answer {
+        font-size: 20px;
+        padding: 10px;
+        width: 300px;
+        margin: 10px 0;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 10px 20px;
+        margin: 5px;
+        border-radius: 6px;
+    }
+
+    #effectCircle {
+        width: 250px;
+        height: 250px;
+    }
+}
