@@ -194,8 +194,8 @@ answerInput.addEventListener("keydown", (e) => {
 
     answerInput.value = ""; 
 
-    // コマンド「ｑ」で答え表示
-    if (input === "ｑ") {
+    // コマンド「ー」で答え表示
+    if (input === "ー") {
         feedback.innerHTML = `<span class="answer">${currentQuestion.char}</span><br>
                               <span class="next">Enterで次の問題</span>`;
         wrongList.push(currentQuestion);
@@ -253,4 +253,5 @@ document.getElementById("homeBtn").addEventListener("click", () => {
     endScreen.classList.add("hidden");
     homeScreen.classList.remove("hidden");
 });
+
 
