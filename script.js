@@ -2,7 +2,6 @@
 // 点字読みクイズ  script.js
 // =============================
 
-
 const quizData = [
     { image:"./images/a.png", char:"あ" },
     { image:"./images/i.png", char:"い" },
@@ -69,10 +68,11 @@ let questionPool = [];
 let wrongList = [];
 let currentQuestion;
 let total = 0;
-let correct = 0;
 let cleared = false;
 let showAnswerMode = false;
 
+// 正解マークの管理用
+let answeredOnceWrong = new Set();
 
 // =============================
 // DOM取得
@@ -91,7 +91,6 @@ const scoreText = document.getElementById("scoreText");
 const correctSound = document.getElementById("correctSound");
 const wrongSound = document.getElementById("wrongSound");
 
-
 // =============================
 // ホーム画面ボタン
 // =============================
@@ -101,28 +100,22 @@ document.getElementById("allBtn").addEventListener("click", () => {
 });
 
 document.getElementById("customBtn").addEventListener("click", () => {
-
-    // ここは触らない
     let n = parseInt(document.getElementById("customNum").value);
-
     if(isNaN(n)) n = 1;
     if(n < 1) n = 1;
     if(n > quizData.length) n = quizData.length;
-
     startQuiz(n);
 });
-
 
 // =============================
 // クイズ開始
 // =============================
 
 function startQuiz(n) {
-
     questionPool = shuffle([...quizData]).slice(0, n);
     wrongList = [];
+    answeredOnceWrong.clear();
     total = questionPool.length;
-    correct = 0;
 
     homeScreen.classList.add("hidden");
     endScreen.classList.add("hidden");
@@ -130,7 +123,6 @@ function startQuiz(n) {
 
     showNextQuestion();
 }
-
 
 // =============================
 // シャッフル
@@ -140,20 +132,19 @@ function shuffle(array) {
     return array.sort(() => Math.random() - 0.5);
 }
 
-
 // =============================
 // 出題
 // =============================
 
 function showNextQuestion() {
-
     if(questionPool.length === 0){
-
         endScreen.classList.remove("hidden");
         quizScreen.classList.add("hidden");
 
+        // 正答率 = 初回で正解した問題
+        let correctCount = total - answeredOnceWrong.size;
         scoreText.textContent =
-            `${total}問中 ${correct}問正解 (${(correct/total*100).toFixed(1)}%)`;
+            `${total}問中 ${correctCount}問正解 (${(correctCount/total*100).toFixed(1)}%)`;
 
         return;
     }
@@ -166,66 +157,54 @@ function showNextQuestion() {
     quizImage.src = currentQuestion.image;
 
     feedback.textContent = "";
-
     answerInput.focus();
 }
-
 
 // =============================
 // 入力判定（ENTER専用）
 // =============================
+
 answerInput.addEventListener("keydown", (e) => {
     if (e.key !== "Enter") return;
 
     const input = answerInput.value.trim();
+    answerInput.value = "";
 
-    // 正解済み・コマンド後なら次の問題へ
-    if (cleared || showAnswerMode) {
+    // 正解済み・答え表示後は次の問題へ
+    if(cleared || showAnswerMode){
         cleared = false;
         showAnswerMode = false;
-
         answerInput.disabled = false;
-        answerInput.value = "";
-        answerInput.focus();
-
         showNextQuestion();
         return;
     }
 
-    answerInput.value = ""; 
-
-    // 「ー」で答え表示
-    if (input === "ー") {
+    // コマンド「ー」で答え表示
+    if(input === "ー"){
         feedback.innerHTML = `<span class="answer">${currentQuestion.char}</span><br>
                               <span class="next">Enterで次の問題</span>`;
-
-        if (!wrongList.includes(currentQuestion)) {
-            wrongList.push(currentQuestion);
-        }
-
+        answeredOnceWrong.add(currentQuestion);
         showAnswerMode = true;
         wrongSound.play();
         return;
     }
 
-    // 正解
-    if (input === currentQuestion.char) {
-        feedback.innerHTML = `<span class="answer">○ ${currentQuestion.char}</span><br>
+    // 正解判定
+    if(input === currentQuestion.char){
+        let mark = answeredOnceWrong.has(currentQuestion) ? "△" : "○";
+        feedback.innerHTML = `<span class="answer">${mark} ${currentQuestion.char}</span><br>
                               <span class="next">Enterで次の問題</span>`;
-        correctSound.play();
+
         cleared = true;
-        correct++;
-
-        effectCircle.style.display = "block";
-        setTimeout(() => { effectCircle.style.display = "none"; }, 500);
-
+        if(mark === "○"){
+            effectCircle.style.display = "block";
+            setTimeout(()=>{effectCircle.style.display="none";},500);
+        }
         return;
     }
 
     // 不正解
-    if (!wrongList.includes(currentQuestion)) {
-        wrongList.push(currentQuestion);
-    }
+    answeredOnceWrong.add(currentQuestion);
     wrongSound.play();
 });
 
@@ -234,14 +213,12 @@ answerInput.addEventListener("keydown", (e) => {
 // =============================
 
 document.getElementById("retryWrongBtn").addEventListener("click", () => {
+    if(answeredOnceWrong.size === 0) return;
 
-    if(wrongList.length === 0) return;
-
-    questionPool = shuffle([...wrongList]);
-    wrongList = [];
+    questionPool = shuffle([...answeredOnceWrong]);
+    answeredOnceWrong.clear();
 
     total = questionPool.length;
-    correct = 0;
 
     endScreen.classList.add("hidden");
     quizScreen.classList.remove("hidden");
@@ -249,14 +226,7 @@ document.getElementById("retryWrongBtn").addEventListener("click", () => {
     showNextQuestion();
 });
 
-
 document.getElementById("homeBtn").addEventListener("click", () => {
-
     endScreen.classList.add("hidden");
     homeScreen.classList.remove("hidden");
 });
-
-
-
-
-
