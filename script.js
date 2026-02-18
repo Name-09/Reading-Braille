@@ -194,11 +194,14 @@ answerInput.addEventListener("keydown", (e) => {
 
     answerInput.value = ""; 
 
-    // コマンド「ー」で答え表示
+    // 「ー」で答え表示
     if (input === "ー") {
         feedback.innerHTML = `<span class="answer">${currentQuestion.char}</span><br>
                               <span class="next">Enterで次の問題</span>`;
-        wrongList.push(currentQuestion);
+
+        if (!wrongList.includes(currentQuestion)) {
+            wrongList.push(currentQuestion);
+        }
 
         showAnswerMode = true;
         wrongSound.play();
@@ -209,16 +212,12 @@ answerInput.addEventListener("keydown", (e) => {
     if (input === currentQuestion.char) {
         feedback.innerHTML = `<span class="answer">○ ${currentQuestion.char}</span><br>
                               <span class="next">Enterで次の問題</span>`;
-
         correctSound.play();
         cleared = true;
         correct++;
 
-        // 丸エフェクト
         effectCircle.style.display = "block";
-        setTimeout(() => {
-            effectCircle.style.display = "none";
-        }, 500);
+        setTimeout(() => { effectCircle.style.display = "none"; }, 500);
 
         return;
     }
@@ -229,7 +228,6 @@ answerInput.addEventListener("keydown", (e) => {
     }
     wrongSound.play();
 });
-
 
 // =============================
 // 終了画面ボタン
@@ -257,6 +255,7 @@ document.getElementById("homeBtn").addEventListener("click", () => {
     endScreen.classList.add("hidden");
     homeScreen.classList.remove("hidden");
 });
+
 
 
 
