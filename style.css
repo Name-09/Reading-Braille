@@ -1,0 +1,54 @@
+body {
+    font-family: sans-serif;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.hidden {
+    display: none;
+}
+
+img {
+    width: 150px;
+    margin: 20px 0;
+}
+
+#feedback {
+    font-size: 40px;
+    height: 50px;
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 6px;
+    margin: 5px;
+}
+
+#effectCircle {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 10px solid rgba(255, 0, 0, 0.7); /* 赤色の輪 */
+    background: transparent; /* 中身くり抜き */
+    transform: translate(-50%, -50%);
+    display: none;
+    pointer-events: none;
+}
+
+/* 正解や答えの文字を赤くする */
+#feedback .answer {
+    color: red;         /* 赤色 */
+    font-size: 50px;    /* 大きさはあとで変更可能 */
+}
+
+/* 「Enterで次の問題」を小さくする */
+#feedback .next {
+    color: #333;        /* 好きな色に変更可能 */
+    font-size: 20px;    /* 小ささはあとで変更可能 */
+}
+
