@@ -102,7 +102,7 @@ document.getElementById("allBtn").addEventListener("click", () => {
 
 document.getElementById("customBtn").addEventListener("click", () => {
 
-    // ★ココハ サワラナイ
+    // ここは触らない
     let n = parseInt(document.getElementById("customNum").value);
 
     if(isNaN(n)) n = 1;
@@ -184,7 +184,6 @@ answerInput.addEventListener("keydown", (e) => {
         cleared = false;
         showAnswerMode = false;
 
-        // 入力欄を有効化してクリア
         answerInput.disabled = false;
         answerInput.value = "";
         answerInput.focus();
@@ -193,10 +192,10 @@ answerInput.addEventListener("keydown", (e) => {
         return;
     }
 
-    answerInput.value = ""; // 入力欄クリア
+    answerInput.value = ""; 
 
-    // コマンド「ー」で答え表示
-    if (input === "ー") {
+    // コマンド「ｑ」で答え表示
+    if (input === "ｑ") {
         feedback.innerHTML = `<span class="answer">${currentQuestion.char}</span><br>
                               <span class="next">Enterで次の問題</span>`;
         wrongList.push(currentQuestion);
@@ -229,12 +228,6 @@ answerInput.addEventListener("keydown", (e) => {
 });
 
 // =============================
-// 次の問題ボタン
-// =============================
-
-
-
-// =============================
 // 終了画面ボタン
 // =============================
 
@@ -260,3 +253,4 @@ document.getElementById("homeBtn").addEventListener("click", () => {
     endScreen.classList.add("hidden");
     homeScreen.classList.remove("hidden");
 });
+
