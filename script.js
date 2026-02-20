@@ -188,20 +188,27 @@ answerInput.addEventListener("keydown", (e) => {
         wrongSound.play();
         return;
     }
+// 正解判定
+if(input === currentQuestion.char){
 
-    // 正解判定
-    if(input === currentQuestion.char){
-        let mark = answeredOnceWrong.has(currentQuestion) ? "△" : "○";
-        feedback.innerHTML = `<span class="answer">${mark} ${currentQuestion.char}</span><br>
-                              <span class="next">Enterで次の問題</span>`;
+    let mark = answeredOnceWrong.has(currentQuestion) ? "△" : "○";
 
-        cleared = true;
-        if(mark === "○"){
-            effectCircle.style.display = "block";
-            setTimeout(()=>{effectCircle.style.display="none";},500);
-        }
-        return;
+    feedback.innerHTML = `<span class="answer">${mark} ${currentQuestion.char}</span><br>
+                          <span class="next">Enterで次の問題</span>`;
+
+    cleared = true;
+
+    // ★ 正解音を再生
+    correctSound.currentTime = 0;
+    correctSound.play();
+
+    if(mark === "○"){
+        effectCircle.style.display = "block";
+        setTimeout(()=>{effectCircle.style.display="none";},500);
     }
+
+    return;
+}
 
     // 不正解
     answeredOnceWrong.add(currentQuestion);
@@ -230,3 +237,4 @@ document.getElementById("homeBtn").addEventListener("click", () => {
     endScreen.classList.add("hidden");
     homeScreen.classList.remove("hidden");
 });
+
