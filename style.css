@@ -179,3 +179,28 @@ button:hover {
         height: 280px;
     }
 }
+
+/* カスタム問題数入力欄（ボタン風） */
+#customNum {
+
+    font-size: 7vw;
+    padding: 3vw;
+
+    width: 30vw;
+    max-width: 120px;
+
+    border-radius: 12px;
+    border: 2px solid #ccc;
+
+    text-align: center;
+
+    background-color: #f0f0f0;
+}
+
+#customNum:focus {
+
+    outline: none;
+    border-color: #666;
+    background-color: #fff;
+
+}
