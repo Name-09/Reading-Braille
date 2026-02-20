@@ -95,18 +95,32 @@ const wrongSound = document.getElementById("wrongSound");
 // ホーム画面ボタン
 // =============================
 
+// 全て解くボタン
 document.getElementById("allBtn").addEventListener("click", () => {
+
     startQuiz(quizData.length);
+
 });
 
-document.getElementById("customBtn").addEventListener("click", () => {
+
+// カスタム問題数ボタン（ボタンの外側クリックで開始）
+document.getElementById("customBtn").addEventListener("click", (e) => {
+
+    // 数字入力欄クリック時は開始しない
+    if(e.target.id === "customNum") return;
+
     let n = parseInt(document.getElementById("customNum").value);
+
     if(isNaN(n)) n = 1;
     if(n < 1) n = 1;
     if(n > quizData.length) n = quizData.length;
+
     startQuiz(n);
+
 });
-// カスタム問題数入力 → Enterで開始
+
+
+// カスタム問題数：Enterで開始
 document.getElementById("customNum").addEventListener("keydown", (e) => {
 
     if(e.key !== "Enter") return;
@@ -121,6 +135,14 @@ document.getElementById("customNum").addEventListener("keydown", (e) => {
 
 });
 
+
+// 数字クリックで全選択（便利）
+document.getElementById("customNum").addEventListener("click", function(e){
+
+    e.stopPropagation(); // ボタン開始防止
+    this.select();
+
+});
 // 入力欄クリックで全選択（便利）
 document.getElementById("customNum").addEventListener("focus", function(){
     this.select();
@@ -256,5 +278,6 @@ document.getElementById("homeBtn").addEventListener("click", () => {
     endScreen.classList.add("hidden");
     homeScreen.classList.remove("hidden");
 });
+
 
 
