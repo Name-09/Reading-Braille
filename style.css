@@ -26,26 +26,26 @@ img {
     margin: 5vw 0;
 }
 
-/* フィードバック全体 */
+/* フィードバック */
 #feedback {
     margin: 3vw 0;
     min-height: 12vw;
 }
 
-/* ○ △ 答え */
+/* ○ △ */
 #feedback .answer {
     color: red;
     font-size: 12vw;
     font-weight: bold;
 }
 
-/* Enterで次 */
+/* 次へ */
 #feedback .next {
     color: #333;
     font-size: 5vw;
 }
 
-/* 入力欄（回答用） */
+/* 回答入力 */
 input#answer {
     font-size: 7vw;
     padding: 3vw;
@@ -56,10 +56,7 @@ input#answer {
     text-align: center;
 }
 
-/* =========================
-   ボタン共通
-   ========================= */
-
+/* 通常ボタン */
 button {
     font-size: 5vw;
     padding: 3vw 6vw;
@@ -78,32 +75,35 @@ button:hover {
 
 
 /* =========================
-   カスタム問題数ボタン（全て解くと同じ見た目）
+   カスタム問題数ボタン（重要）
    ========================= */
 
 .customButton {
 
+    display: inline-block;
+
     font-size: 5vw;
     padding: 3vw 6vw;
+    margin: 2vw 1vw;
 
     border-radius: 12px;
     border: 2px solid #ccc;
 
     background-color: #f0f0f0;
     cursor: pointer;
+
 }
 
 .customButton:hover {
     background-color: #e0e0e0;
 }
 
-/* 中の数字入力 */
+/* 数字入力部分 */
 .customButton input {
 
     font-size: inherit;
 
-    width: 10vw;
-    max-width: 60px;
+    width: 3em;
 
     border: none;
     outline: none;
@@ -111,11 +111,12 @@ button:hover {
     text-align: center;
 
     background: transparent;
+
 }
 
 
 /* =========================
-   丸エフェクト
+   ○エフェクト
    ========================= */
 
 #effectCircle {
@@ -174,10 +175,6 @@ button:hover {
         padding: 10px 22px;
     }
 
-    .customButton input {
-        width: 60px;
-    }
-
     #effectCircle {
         width: 260px;
         height: 260px;
@@ -186,7 +183,7 @@ button:hover {
 
 
 /* =========================
-   PC用
+   PC用（重要）
    ========================= */
 
 @media (min-width: 1024px) {
@@ -224,7 +221,7 @@ button:hover {
     }
 
     .customButton input {
-        width: 60px;
+        width: 3em;
     }
 
     #effectCircle {
