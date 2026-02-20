@@ -1,62 +1,86 @@
+/* =========================
+   基本設定（スマホ基準）
+   ========================= */
+
 body {
     font-family: sans-serif;
     text-align: center;
-    margin: 5vw 0; /* 上下の余白を画面幅に比例 */
+    margin: 5vw 0;
+    font-size: 5vw; /* 全体の基準サイズ */
 }
 
 .hidden {
     display: none;
 }
 
-/* 画像サイズを画面幅に応じて調整 */
+/* タイトル */
+h1 {
+    font-size: 8vw;
+    margin-bottom: 4vw;
+}
+
+/* 画像 */
 img {
-    width: 40vw;
-    max-width: 150px;
+    width: 60vw;
+    max-width: 220px;
     margin: 5vw 0;
 }
 
+/* フィードバック全体 */
 #feedback {
     margin: 3vw 0;
+    min-height: 12vw;
 }
 
-/* 正解や答えの文字を赤く、大きさは画面幅に応じて */
+/* ○ △ 答え */
 #feedback .answer {
     color: red;
-    font-size: 10vw; /* 後で数字を変えれば大きさ調整可能 */
+    font-size: 12vw;
+    font-weight: bold;
 }
 
-/* 「Enterで次の問題」を小さく控えめに */
+/* Enterで次 */
 #feedback .next {
     color: #333;
-    font-size: 4vw;  /* 後で数字を変えれば大きさ調整可能 */
+    font-size: 5vw;
 }
 
 /* 入力欄 */
 input#answer {
-    font-size: 6vw;
+    font-size: 7vw;
     padding: 3vw;
     width: 60vw;
-    max-width: 300px;
-    margin: 2vw 0;
+    max-width: 320px;
+    border-radius: 10px;
+    border: 2px solid #ccc;
+    text-align: center;
 }
 
 /* ボタン */
 button {
-    font-size: 4vw;
-    padding: 3vw 5vw;
+    font-size: 5vw;
+    padding: 3vw 6vw;
     border-radius: 12px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
     margin: 2vw 1vw;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
 }
 
 /* 丸エフェクト */
 #effectCircle {
-    width: 60vw;
-    height: 60vw;
-    max-width: 250px;
-    max-height: 250px;
-    border: 10px solid rgba(255,0,0,0.7); /* 赤色の輪 */
+    width: 65vw;
+    height: 65vw;
+    max-width: 280px;
+    max-height: 280px;
+    border: 12px solid rgba(255,0,0,0.7);
     border-radius: 50%;
-    background: transparent; /* 中身くり抜き */
+    background: transparent;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -65,47 +89,72 @@ button {
     pointer-events: none;
 }
 
-/* 基本はスマホ寄り（画面幅に応じて変化） */
-img {
-    width: 60vw;
-    max-width: 150px;
-    margin: 5vw 0;
-}
 
-#feedback .answer {
-    color: red;
-    font-size: 10vw;
-}
+/* =========================
+   タブレット用
+   ========================= */
 
-#feedback .next {
-    color: #333;
-    font-size: 4vw;
-}
+@media (min-width: 600px) {
 
-input#answer {
-    font-size: 6vw;
-    padding: 3vw;
-    width: 60vw;
-    max-width: 300px;
-    margin: 2vw 0;
-}
+    body {
+        font-size: 18px;
+        margin: 30px 0;
+    }
 
-button {
-    font-size: 4vw;
-    padding: 3vw 5vw;
-    border-radius: 12px;
-    margin: 2vw 1vw;
-}
+    h1 {
+        font-size: 32px;
+    }
 
-/* PC用に固定サイズで調整（画面幅が768px以上） */
-@media (min-width: 768px) {
     img {
-        width: 150px;
-        margin: 20px 0;
+        width: 200px;
     }
 
     #feedback .answer {
-        font-size: 50px;
+        font-size: 48px;
+    }
+
+    #feedback .next {
+        font-size: 18px;
+    }
+
+    input#answer {
+        font-size: 24px;
+        padding: 10px;
+        width: 250px;
+    }
+
+    button {
+        font-size: 18px;
+        padding: 10px 22px;
+    }
+
+    #effectCircle {
+        width: 260px;
+        height: 260px;
+    }
+}
+
+
+/* =========================
+   PC用
+   ========================= */
+
+@media (min-width: 1024px) {
+
+    body {
+        font-size: 18px;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+
+    img {
+        width: 240px;
+    }
+
+    #feedback .answer {
+        font-size: 56px;
     }
 
     #feedback .next {
@@ -113,21 +162,17 @@ button {
     }
 
     input#answer {
-        font-size: 20px;
-        padding: 10px;
-        width: 300px;
-        margin: 10px 0;
+        font-size: 26px;
+        width: 280px;
     }
 
     button {
-        font-size: 16px;
-        padding: 10px 20px;
-        margin: 5px;
-        border-radius: 6px;
+        font-size: 18px;
+        padding: 12px 26px;
     }
 
     #effectCircle {
-        width: 250px;
-        height: 250px;
+        width: 280px;
+        height: 280px;
     }
 }
