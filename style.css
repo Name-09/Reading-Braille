@@ -6,7 +6,7 @@ body {
     font-family: sans-serif;
     text-align: center;
     margin: 5vw 0;
-    font-size: 5vw; /* 全体の基準サイズ */
+    font-size: 5vw;
 }
 
 .hidden {
@@ -45,7 +45,7 @@ img {
     font-size: 5vw;
 }
 
-/* 入力欄 */
+/* 入力欄（回答用） */
 input#answer {
     font-size: 7vw;
     padding: 3vw;
@@ -56,7 +56,10 @@ input#answer {
     text-align: center;
 }
 
-/* ボタン */
+/* =========================
+   ボタン共通
+   ========================= */
+
 button {
     font-size: 5vw;
     padding: 3vw 6vw;
@@ -74,7 +77,47 @@ button:hover {
 }
 
 
-/* 丸エフェクト */
+/* =========================
+   カスタム問題数ボタン（全て解くと同じ見た目）
+   ========================= */
+
+.customButton {
+
+    font-size: 5vw;
+    padding: 3vw 6vw;
+
+    border-radius: 12px;
+    border: 2px solid #ccc;
+
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.customButton:hover {
+    background-color: #e0e0e0;
+}
+
+/* 中の数字入力 */
+.customButton input {
+
+    font-size: inherit;
+
+    width: 10vw;
+    max-width: 60px;
+
+    border: none;
+    outline: none;
+
+    text-align: center;
+
+    background: transparent;
+}
+
+
+/* =========================
+   丸エフェクト
+   ========================= */
+
 #effectCircle {
     width: 65vw;
     height: 65vw;
@@ -125,9 +168,14 @@ button:hover {
         width: 250px;
     }
 
-    button {
+    button,
+    .customButton {
         font-size: 18px;
         padding: 10px 22px;
+    }
+
+    .customButton input {
+        width: 60px;
     }
 
     #effectCircle {
@@ -168,70 +216,19 @@ button:hover {
         width: 280px;
     }
 
-    button {
+    button,
+    .customButton {
         font-size: 18px;
         padding: 12px 26px;
         border-radius: 6px;
+    }
+
+    .customButton input {
+        width: 60px;
     }
 
     #effectCircle {
         width: 280px;
         height: 280px;
     }
-}
-
-/* カスタム問題数入力欄（ボタン風） */
-#customNum {
-
-    font-size: 7vw;
-    padding: 3vw;
-
-    width: 30vw;
-    max-width: 120px;
-
-    border-radius: 12px;
-    border: 2px solid #ccc;
-
-    text-align: center;
-
-    background-color: #f0f0f0;
-}
-
-#customNum:focus {
-
-    outline: none;
-    border-color: #666;
-    background-color: #fff;
-
-}
-
-/* カスタム問題数ボタン */
-.customButton {
-
-    font-size: 5vw;
-    padding: 3vw 6vw;
-
-    border-radius: 12px;
-    border: 2px solid #ccc;
-
-    background-color: #f0f0f0;
-    cursor: pointer;
-
-}
-
-/* 中の入力欄 */
-.customButton input {
-
-    font-size: inherit;
-
-    width: 15vw;
-    max-width: 80px;
-
-    border: none;
-    outline: none;
-
-    text-align: center;
-
-    background: transparent;
-
 }
