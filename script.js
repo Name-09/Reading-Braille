@@ -106,6 +106,25 @@ document.getElementById("customBtn").addEventListener("click", () => {
     if(n > quizData.length) n = quizData.length;
     startQuiz(n);
 });
+// カスタム問題数入力 → Enterで開始
+document.getElementById("customNum").addEventListener("keydown", (e) => {
+
+    if(e.key !== "Enter") return;
+
+    let n = parseInt(e.target.value);
+
+    if(isNaN(n)) n = 1;
+    if(n < 1) n = 1;
+    if(n > quizData.length) n = quizData.length;
+
+    startQuiz(n);
+
+});
+
+// 入力欄クリックで全選択（便利）
+document.getElementById("customNum").addEventListener("focus", function(){
+    this.select();
+});
 
 // =============================
 // クイズ開始
@@ -237,4 +256,5 @@ document.getElementById("homeBtn").addEventListener("click", () => {
     endScreen.classList.add("hidden");
     homeScreen.classList.remove("hidden");
 });
+
 
