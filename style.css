@@ -60,11 +60,19 @@ button {
 /* 数字入力 */
 #customNum {
     width: 60px;
-    font-size: 16px;
-    padding: 4px;
-    text-align: center;
-}
 
+    font-size: 16px;
+    text-align: center;
+
+    padding: 4px 6px;
+
+    border: 1px solid black;   /* ←細い黒線の枠 */
+    background-color: white;   /* ←中を白に */
+
+    border-radius: 4px;        /* ←少しだけ角丸（不要なら消してOK） */
+
+    outline: none;
+}
 /* =============================
    クイズ画面
 ============================= */
@@ -109,3 +117,4 @@ img {
     pointer-events: none;
     opacity: 0;
 }
+
